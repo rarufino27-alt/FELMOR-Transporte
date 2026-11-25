@@ -1,0 +1,104 @@
+
+/* FELMOR — tema escuro opcional; o tema claro continua sendo o padrão */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --navy: #E8EDF5;
+  --navy-deep: #080D16;
+  --navy-light: #18263A;
+  --blue: #75B9F2;
+  --blue-soft: #172A3E;
+  --gold: #D7B65D;
+  --gold-dark: #A98232;
+  --gold-soft: #2D2719;
+  --silver: #AEBBCB;
+  --bg: #0B111B;
+  --white: #131D2A;
+  --text: #E7EDF5;
+  --muted: #A5B2C2;
+  --line: #2A394B;
+  --success: #36C58A;
+  --danger: #F07878;
+  --shadow: 0 8px 28px rgba(0,0,0,.24), 0 2px 6px rgba(0,0,0,.18);
+  --shadow-hover: 0 14px 35px rgba(0,0,0,.34);
+}
+:root[data-theme="dark"] body { background:var(--bg); color:var(--text); }
+:root[data-theme="dark"] .header {
+  background: radial-gradient(circle at 90% 0%,rgba(215,182,93,.15),transparent 42%),
+    linear-gradient(135deg,#080D16,#101B2A 68%,#1A2B40);
+  border-bottom:1px solid rgba(215,182,93,.22);
+}
+:root[data-theme="dark"] .header::before { border-color:rgba(215,182,93,.16); }
+:root[data-theme="dark"] .section-heading h2,
+:root[data-theme="dark"] .card-label,
+:root[data-theme="dark"] .tl-text,
+:root[data-theme="dark"] .vehicle-name,
+:root[data-theme="dark"] .field select,
+:root[data-theme="dark"] .field input,
+:root[data-theme="dark"] .pay-name,
+:root[data-theme="dark"] .modal-title { color:#E8EDF5; }
+:root[data-theme="dark"] .section-heading p,
+:root[data-theme="dark"] .vehicle-desc,
+:root[data-theme="dark"] .value-note { color:#A5B2C2; }
+:root[data-theme="dark"] .card {
+  background:linear-gradient(145deg,#172333,#121C29);
+  border-color:#2A394B;
+  box-shadow:var(--shadow);
+}
+:root[data-theme="dark"] .tl-row:hover { background:#1B2A3B; border-color:#34485F; }
+:root[data-theme="dark"] .tl-dot { background:#131D2A; border-color:#3A4B60; }
+:root[data-theme="dark"] .tl-text.placeholder { color:#8493A5; }
+:root[data-theme="dark"] .tl-chev { color:#A5B2C2; }
+:root[data-theme="dark"] .add-parada { background:#172A3E; border-color:#344D68; color:#9CCCF4; }
+:root[data-theme="dark"] .add-parada:hover { background:#203A54; }
+:root[data-theme="dark"] .vehicle { background:linear-gradient(110deg,#1A2A3D,#131D2A); border-color:#34485F; }
+:root[data-theme="dark"] .vehicle-icon { background:#D7B65D; color:#101722; }
+:root[data-theme="dark"] .value-card {
+  border-color:rgba(215,182,93,.48);
+  background:radial-gradient(circle at 100% 0%,rgba(215,182,93,.18),transparent 45%),
+    linear-gradient(135deg,#080D16,#17263A 78%);
+}
+:root[data-theme="dark"] .pay { background:#131D2A; border-color:#344254; }
+:root[data-theme="dark"] .pay:hover { border-color:#A98232; background:#1B2A3B; }
+:root[data-theme="dark"] .pay-icon { color:#D9E0E8; }
+:root[data-theme="dark"] .pay.ativo { border-color:#D7B65D; background:#302919; box-shadow:0 0 0 2px rgba(215,182,93,.12); }
+:root[data-theme="dark"] .pay.ativo .pay-icon,
+:root[data-theme="dark"] .pay.ativo .pay-name { color:#F0D48C; }
+:root[data-theme="dark"] .field { background:#101A27; border-color:#344254; }
+:root[data-theme="dark"] .field:focus-within { background:#172333; border-color:#D7B65D; }
+:root[data-theme="dark"] .field-label { color:#A5B2C2; }
+:root[data-theme="dark"] .field select,
+:root[data-theme="dark"] .field input { color:#EDF2F8; }
+:root[data-theme="dark"] .field select option { background:#131D2A; color:#EDF2F8; }
+:root[data-theme="dark"] .modal { background:rgba(0,0,0,.76); }
+:root[data-theme="dark"] .modal-content { background:#131D2A; border:1px solid #344254; }
+:root[data-theme="dark"] .modal-handle { background:#536174; }
+:root[data-theme="dark"] .modal input { background:#0D1520; border-color:#344254; color:#EDF2F8; }
+:root[data-theme="dark"] .modal input:focus { border-color:#D7B65D; background:#172333; }
+:root[data-theme="dark"] .lista div { color:#DDE5EF; }
+:root[data-theme="dark"] .lista div:hover { background:#172A3E; border-color:#344D68; color:#F0D48C; }
+:root[data-theme="dark"] .footer { color:#8E9BAD; }
+:root[data-theme="dark"] .footer strong { color:#D7B65D; }
+:root[data-theme="dark"] button:focus-visible,
+:root[data-theme="dark"] input:focus-visible,
+:root[data-theme="dark"] select:focus-visible { outline-color:rgba(215,182,93,.38); }
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb { background:#46566B; }
+
+.theme-toggle {
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  min-height:38px; padding:8px 12px; border:1px solid rgba(10,27,50,.18);
+  border-radius:999px; background:#FFFFFF; color:#17263B;
+  font-size:12px; font-weight:700; white-space:nowrap;
+  box-shadow:0 3px 12px rgba(10,27,50,.08);
+  transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease;
+}
+.theme-toggle:hover { transform:translateY(-1px); }
+.theme-toggle i { font-size:14px; color:#A98232; }
+:root[data-theme="dark"] .theme-toggle {
+  background:#182638; color:#F0F3F8; border-color:rgba(215,182,93,.35);
+  box-shadow:0 3px 12px rgba(0,0,0,.2);
+}
+:root[data-theme="dark"] .theme-toggle i { color:#F0D48C; }
+@media(max-width:520px) {
+  .brand-row { flex-wrap:wrap; }
+  .theme-toggle { margin-left:auto; }
+}

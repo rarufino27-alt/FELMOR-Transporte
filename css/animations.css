@@ -1,0 +1,31 @@
+
+/* FELMOR — animações leves e respeitando acessibilidade */
+@keyframes felmorFadeUp {
+  from { opacity:0; transform:translateY(10px); }
+  to { opacity:1; transform:translateY(0); }
+}
+.header-intro { animation:felmorFadeUp .55s ease both; }
+.section-heading { animation:felmorFadeUp .5s ease both; }
+.card { animation:felmorFadeUp .48s ease both; }
+.card:nth-of-type(2) { animation-delay:.04s; }
+.card:nth-of-type(3) { animation-delay:.08s; }
+.card:nth-of-type(4) { animation-delay:.12s; }
+.card, .pay, .tl-row, .add-parada, .cta-btn {
+  transition:transform .2s ease, box-shadow .2s ease, background-color .2s ease,
+    border-color .2s ease, color .2s ease;
+}
+@media(hover:hover) {
+  .card:hover { box-shadow:var(--shadow-hover); }
+  .pay:hover { transform:translateY(-2px); }
+  .cta-btn:hover { transform:translateY(-2px); }
+}
+.tl-row:active, .pay:active, .cta-btn:active { transform:scale(.985); }
+.theme-toggle:focus-visible { outline:3px solid rgba(8,127,229,.28); outline-offset:3px; }
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    scroll-behavior:auto !important;
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+}
