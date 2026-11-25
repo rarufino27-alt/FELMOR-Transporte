@@ -16,7 +16,7 @@
 
 <link rel="stylesheet" href="css/theme.css">
 <link rel="stylesheet" href="css/theme-modes.css">
-<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/animations.css">\n<link rel="stylesheet" href="css/vehicle-options.css">
 </head>
 
 <body>
@@ -157,23 +157,24 @@
           Categoria da viagem
         </div>
 
-        <div class="vehicle">
+        <div class="vehicle-options" role="group" aria-label="Escolha a capacidade do veículo">
+          <button type="button" class="vehicle-option active" data-multiplier="1" aria-pressed="true">
+            <span class="vehicle-option-icon"><i class="fa-solid fa-car-side"></i></span>
+            <span class="vehicle-option-info">
+              <strong>Executivo</strong>
+              <small>4 lugares • Tarifa original</small>
+            </span>
+            <i class="fa-solid fa-circle-check vehicle-option-check"></i>
+          </button>
 
-          <div class="vehicle-icon">
-            <i class="fa-solid fa-car-side"></i>
-          </div>
-
-          <div class="vehicle-info">
-            <div class="vehicle-name">Executivo</div>
-            <div class="vehicle-desc">
-              4 lugares • Conforto e praticidade
-            </div>
-          </div>
-
-          <div class="vehicle-check">
-            <i class="fa-solid fa-circle-check"></i>
-          </div>
-
+          <button type="button" class="vehicle-option" data-multiplier="1.5" aria-pressed="false">
+            <span class="vehicle-option-icon"><i class="fa-solid fa-van-shuttle"></i></span>
+            <span class="vehicle-option-info">
+              <strong>Família</strong>
+              <small>6 lugares • Acréscimo de 50%</small>
+            </span>
+            <i class="fa-regular fa-circle vehicle-option-check"></i>
+          </button>
         </div>
 
         <input type="hidden" id="tipoCarro" value="1">
@@ -433,6 +434,22 @@ const saidaPraia = document.getElementById("saidaPraia");
 const embarque = document.getElementById("embarque");
 const tipoCarro = document.getElementById("tipoCarro");
 
+document.querySelectorAll(".vehicle-option").forEach((opcao)=>{
+  opcao.addEventListener("click",()=>{
+    tipoCarro.value = opcao.dataset.multiplier;
+    document.querySelectorAll(".vehicle-option").forEach((item)=>{
+      const ativo = item === opcao;
+      item.classList.toggle("active",ativo);
+      item.setAttribute("aria-pressed",String(ativo));
+      const icone = item.querySelector(".vehicle-option-check");
+      icone.className = ativo
+        ? "fa-solid fa-circle-check vehicle-option-check"
+        : "fa-regular fa-circle vehicle-option-check";
+    });
+    calcular();
+  });
+});
+
 let origem = null;
 let destino = null;
 let parada = null;
@@ -650,7 +667,9 @@ function calcular(){
 
   }
 
-  let total = (base+taxas)*Number(tipoCarro.value||1);
+  const multiplicadorVeiculo = Number(tipoCarro.value||1);
+  const tarifaVeiculo = base * multiplicadorVeiculo;
+  let total = tarifaVeiculo + taxas;
 
   if(pagamento === "credito") total /= 0.95;
 
@@ -739,7 +758,12 @@ document.getElementById("btnContinuar").onclick = ()=>{
 
   }
 
-  let total = (base+taxas)*Number(tipoCarro.value||1);
+  const multiplicadorVeiculo = Number(tipoCarro.value||1);
+  const tarifaVeiculo = base * multiplicadorVeiculo;
+  if(multiplicadorVeiculo > 1){
+    detalhes += `🚐 Veículo de 6 lugares (+50%): R$ ${(tarifaVeiculo-base).toFixed(2)}\n`;
+  }
+  let total = tarifaVeiculo + taxas;
 
   if(pagamento === "credito") total /= 0.95;
 
@@ -757,7 +781,8 @@ document.getElementById("btnContinuar").onclick = ()=>{
 
   msg += `🏁 Destino:\n${destino}\n\n`;
 
-  msg += `💰 Subtotal: R$ ${base.toFixed(2)}\n\n`;
+  msg += `🚘 Veículo: ${multiplicadorVeiculo > 1 ? "6 lugares" : "4 lugares"}\n`;
+  msg += `💰 Subtotal da tarifa: R$ ${tarifaVeiculo.toFixed(2)}\n\n`;
 
   msg += `──────────────\n📋 *Detalhes*\n`;
 
