@@ -15,3 +15,10 @@ O código de dados e as demais funcionalidades foram preservados. A alteração 
 Substitua os arquivos correspondentes na raiz do repositório, mantendo todas as pastas. O novo arquivo `css/vehicle-options.css` é carregado pelo `index.html`.
 
 Faça testes no GitHub Pages para confirmar a seleção dos dois veículos, os valores exibidos e a mensagem do WhatsApp.
+
+
+## Correção da parada intermediária
+- Restaurado o controle "Adicionar parada" como botão acessível.
+- Mantido o conceito de uma única parada intermediária entre origem e destino.
+- Ao alterar a origem, a parada anterior é limpa e a opção de adicionar parada volta a aparecer.
+- Ao ativar a parada, o campo aparece na linha do trajeto e o botão é ocultado, como no fluxo original.
